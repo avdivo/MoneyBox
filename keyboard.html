@@ -1,0 +1,363 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset='utf-8'>
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=1.0, user-scalable=0"> 
+  
+  <title>Клавиатура</title>
+  <style>
+      
+body {
+    font-family: Trebuchet MS, 'Helvetica CY', 'Nimbus Sans L', sans-serif;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.screen {
+    position:absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}    
+
+.icon {
+    font-size: 24px;
+    display:inline-block;
+    position:relative;
+    margin: 6px 6px 6px 6px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .icon:hover {
+        background-color: blue;
+    }
+}
+
+.sim {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+    margin-top	: 15px;
+}
+
+.sim1 {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: right;
+	margin-top	: 15px; 
+}
+
+.sim2 {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+	margin-top	: 60px; 
+}
+
+.disp {
+    width: 414px;
+    height: 100px;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+}
+
+.digit {
+    display:inline-block;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.key {
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}    
+@media (hover: hover) and (pointer: fine) {
+    .key:hover {
+        background-color: blue;
+    }
+}
+
+
+.null {
+    width: 310px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .null:hover {
+        background-color: blue;
+    }
+}
+
+.one {
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .one:hover {
+        background-color: blue;
+    }
+}
+
+.ok {
+    width: 100px;
+    height: 204px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .ok:hover {
+        background-color: blue;	
+    }
+}
+
+
+  </style>
+ </head>
+ <body>
+
+<!-- Иконки операций -->
+<div align='center' id='icons' class='screen'>
+    
+    <div class='icon' id='food' onclick="select('send 2-3=')">
+        <img src="icons/food.png"><br>Продукты
+    </div>
+
+    <div class='icon' id='other' onclick="select('send 2-4=')">
+        <img src="icons/other.png"><br>Прочее
+    </div>
+
+    <div class='icon' id='payments' onclick="select('send 2-5=')">
+        <img src="icons/payments.png"><br>Счета
+    </div>
+   
+    <br>
+
+    <div class='icon' id='take' onclick="select('send 1-2=')">
+        <img src="icons/take.png"><br>Личные
+    </div>
+
+    <div class='icon' id='firm' onclick="select('send 1-20=')">
+        <img src="icons/firm.png"><br>Фирма
+    </div>
+
+    <div class='icon' id='parts' onclick="select('send 1-30=')">
+        <img src="icons/parts.png"><br>Запчасти
+    </div>
+
+    <br>
+
+    <div class='icon' id='home' onclick="select('send 1-15=')">
+        <img src="icons/home.png"><br>Домашняя
+    </div>
+
+</div>
+
+
+<!-- Клавиатура -->
+<div align='center' id='keyboard' class='screen'>
+
+    <div class='disp'><div class='sim1' id='display'></div></div>
+
+    <div class='digit'>
+        <div class='key' id='7' onclick='key(this)'><div class='sim'>7</div></div>
+        <div class='key' id='8' onclick='key(this)'><div class='sim'>8</div></div>
+        <div class='key' id='9' onclick='key(this)'><div class='sim'>9</div></div>
+
+    <br>
+        <div class='key' id='4' onclick='key(this)'><div class='sim'>4</div></div>
+        <div class='key' id='5' onclick='key(this)'><div class='sim'>5</div></div>
+        <div class='key' id='6' onclick='key(this)'><div class='sim'>6</div></div>
+
+    <br>
+        <div class='key' id='1' onclick='key(this)'><div class='sim'>1</div></div>
+        <div class='key' id='2' onclick='key(this)'><div class='sim'>2</div></div>
+        <div class='key' id='3' onclick='key(this)'><div class='sim'>3</div></div>
+
+    <br>
+        <div class='null' id='0' onclick='key(this)'><div class='sim'>0</div></div>
+    </div>   
+    <div class='digit'>
+        <div class='one' id='x' onclick='key(this)'><div class='sim'>x</div></div><br>
+        <div class='one' id='del' onclick='key(this)'><div class='sim'>&#8592;</div></div><br>
+        <div class='ok' id='ok' onclick='key(this)'><div class='sim2'>Ok</div></div>
+
+    </div>   
+
+</div> 
+
+<!--Скрытые поля для отправки данных -->
+<input name="from" id = "from" type="hidden" form="data" value='quickSend'/>
+<input name="mes" id = "mes" type="hidden" form="data" value=''/>
+
+<form type="submit" id="data" method="post" action="index.php" ></form>
+
+</body>
+ 
+<script type='text/javascript'>
+
+    //Не запоминать историю
+    if ( window.history.replaceState ) {
+        window.history.replaceState( null, null, window.location.href );
+    }
+
+    var display = ''; //Сумма на дисплее клавиатуры
+    var send = ''; //Команда для перевода
+
+    var keyboard = document.getElementById('keyboard'); //Клавиатура
+    var icons = document.getElementById('icons'); //Иконки переводов
+    icons.style.visibility = 'visible';      //Иконки переводов показать
+    keyboard.style.visibility = 'hidden';  //Клавиатура скрыть
+
+    //Вызывается при клике на кнопку на экране
+    function key (value)
+    {
+        var key = value.id; //Получаем id кнопки
+        switch (key) {
+            case 'x':
+                icons.style.visibility = 'visible';      //Иконки переводов показать
+                keyboard.style.visibility = 'hidden';  //Клавиатура скрыть
+                display = ''; //Сумма на дисплее клавиатуры
+                send = ''; //Команды нет
+                //Очищаем дисплей
+                document.getElementById('display').innerHTML = display;
+            break;
+            case 'ok':
+                color ('ok');
+                ok();
+            break;
+            default:
+                color (key);
+                displayUpdaye (key);        
+        }
+
+    }
+
+    //---------------------------------------------------------------------------------------------
+    //Смена цвета при нажатии кнопки и щелчек
+    function color (value)
+    {
+        var element = document.getElementById(value);
+        element.style.backgroundColor = "#FF0000";
+        setTimeout(colorDel, 200, element); // Запуск таймера свечения кнопки. Элемент (кнопку) передаем в параметре
+    } 
+    //Удаление цвера с кнопки по таймеру
+    function colorDel (value)
+    {
+        value.style.backgroundColor = '';
+    }
+    //---------------------------------------------------------------------------------------------
+    
+    //---------------------------------------------------------------------------------------------  
+    //Обновление дисплея в соответствии с пришедшим параметром
+    //Цифра - добавляется в конец. 'x' - удаляет 1 символ
+    function displayUpdaye (value)
+    {
+        if (value == 'del') {
+            display = display.substring(0, display.length - 1); //Удаляем последний элемент с дисплея
+            value = '';
+        } else {
+            if (display.length > 8) value = ''; //Ограничиваем длину строки
+            if (value == '0' && display == '') value = ''; //Если нажат 0, то проверяем чтоб он не был первым
+            display = display + value; //Добавляем введенную цифру на дисплей
+        }
+        //Обновляем дисплей
+        document.getElementById('display').innerHTML = display;
+    }
+
+    //---------------------------------------------------------------------------------------------  
+    //Отлавливаем нажатия клавиш на клавиатуре
+    document.addEventListener('keydown', function(event){
+
+       if (event.key == 'Enter') {
+           //Нажат Ввод
+           color ('ok');
+           ok();
+       }
+       if (event.key == 'Escape') {
+            //Нажат Выход
+            color ('x');
+            icons.style.visibility = 'visible';      //Иконки переводов показать
+            keyboard.style.visibility = 'hidden';  //Клавиатура скрыть
+            display = ''; //Сумма на дисплее клавиатуры
+            send = ''; //Команды нет
+            //Очищаем дисплей
+            document.getElementById('display').innerHTML = display;
+       }
+       if (event.key == 'Backspace') {
+           //Нажата Удаление
+           color ('del');
+           displayUpdaye ('del');
+       }
+
+       //Нажата ли цыфра
+       var value = event.keyCode ;
+       if ((value >= 48 && value <= 57) || (value >= 96 && value <= 105)) {
+           //Нажата Цифра
+           color (event.key);
+           displayUpdaye (event.key);
+       }
+    });
+
+    //---------------------------------------------------------------------------------------------  
+    //Выбор перевода, открытие клавиатуры
+    //В параметре получаем команду для перевода (типа send 1-2=)
+    function select (value)
+    {
+        send = value; //Команда записана
+        display = ''; //Команда для перевода
+        icons.style.visibility = 'hidden';      //Иконки переводов скрыть
+        keyboard.style.visibility = 'visible';  //Клавиатура показать
+    }
+
+    //---------------------------------------------------------------------------------------------  
+    //Нажата кнопка Ок. Совершаем перевод
+    //В Глобальной переменной send строка для перевода (типа send 1-2=)
+    //В глобальной переменной display сумма, если она не 0, дополняем ею команду и отправляем на выполнение
+    function ok()
+    {
+        if (display == '' || send == '') return; //Если нечего отправлять, то не реагируем
+        //Собираем парамерты POST запроса
+        document.getElementById('mes').value = send + display;
+        document.getElementById('data').submit(); //Отправка формы
+
+    }
+
+    //---------------------------------------------------------------------------------------------  
+
+
+
+</script>
+ 
+</html>

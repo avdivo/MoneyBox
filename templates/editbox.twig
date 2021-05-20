@@ -1,0 +1,809 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.6">
+  <title>Создание/редактирование копилки</title>
+  <style>
+	  
+	body {
+		font-family: Trebuchet MS, "Helvetica CY", "Nimbus Sans L", sans-serif;
+	}
+
+	/* Контейнер Для всего */
+	.container {
+	width: 575px;
+	max-width: 575px;
+	background:#000000;
+	padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+	border-radius: 0 10px;
+	}
+
+		
+	/* Основной белый контейнер для списков */
+	.deviceBox {
+	width: 95%;
+	background: #FFFFFF;
+    margin: auto; /* Выравниваем по центру */
+	border-radius: 0 10px;
+	margin-top: 5px; /* Отступ сверху */
+	padding: 12px 9px 9px;
+	text-align: left;
+	}
+	
+	/* Название Списка */
+	.nomnam {
+	background: #0000FF;
+	padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+	margin-bottom: 0px;
+	border-radius: 0 10px;
+	color: #FFFFFF;
+	font-size:20px;
+	}
+
+	/* Номер копилки пустое*/
+	.nom {
+	display:inline-block;
+	width: 10%;
+	font-size:20px;
+	font-weight: bold;
+	color: #FFFFFF;
+	}
+
+	/* Действие */
+	.nam {
+	display:inline-block;
+	width: 450px;
+	font-size:20px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-align:right;
+	}
+
+	/* Поле ввода суммы */
+	.num {
+	font-size: 24px;
+	color: red;
+	width: 95px;
+	text-align: right;
+	display: inline-block;
+	margin: 10px 10px; /* отступ от текста */
+	}
+
+	/* Поле ввода текста */
+	.txt {
+	font-size: 24px;
+	color: red;
+	width: 200px;
+	text-align: right;
+	display: inline-block;
+	margin: 10px 10px; /* отступ от текста */
+	}
+
+	/* Подпись полей */
+	.text1 {
+	width: 100px;
+	font-size: 18px;
+	margin: 5px 5px; /* отступ от текста */
+	vertical-align:-0.4em;
+	display: inline-block;
+	}
+
+	/* Пояснительне тексты */
+	.text2 {
+	font-size: 16px;
+	margin: 5px 5px; /* отступ от текста */
+	vertical-align:top;
+	display: inline-block;
+	}
+
+	/* Спойлер Долги */
+	summary {
+	padding: 3px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+	margin-bottom: 2px;
+	border-radius: 0 10px;
+	text-align:right;
+	font-size:16px;
+	cursor: pointer;
+	outline: none;
+	}
+
+	/* Значек для перехода в JS для погашения или удаления долга */
+	.debt {
+	font-size: 20px;
+	margin-left: 10px;
+	display: inline-block;
+	cursor: pointer;
+	}
+
+	/* Значек для перехода в JS для погашения долга, неактивный*/
+	.debtNo {
+	font-size: 20px;
+	margin-left: 10px;
+	display: inline-block;
+	filter: grayscale(100%);
+	}
+
+	/* Поле ввода суммы */
+	.num1 {
+	font-size: 14px;
+	color: red;
+	width: 45px;
+	text-align: right;
+	display: inline-block;
+	outline: none;
+	margin-right: 3px;
+	margin-left: 3px;
+	}
+
+
+	/* Выпадающий список */
+	.spis {
+	font-size: 14px;
+	color: red;
+	width: 160px;
+	height: 22px;
+	text-align: right;
+	display: inline-block;
+	outline: none;
+	margin-right: 3px;
+	margin-left: 3px;
+	}
+
+	textarea {
+		width: 99%;
+		resize: none;
+		font-size: 16px;
+	}
+
+	/* Контейнер Нижняя панель с кнопками*/
+	.keys1 {
+	width: 95%;
+	height: 40px;
+	background: #FFFFFF;
+	border-radius: 0 10px;
+	margin-top: 5px; /* Отступ сверху */
+	margin-bottom: 10px;
+	padding: 8px 9px 9px;
+	margin-bottom: 6px;
+	}
+
+
+	/* Кнопка */
+	.button2 {
+	font-size:18px;
+	font-weight: bold;
+	border-radius: 0 10px;
+	width: 120px;
+	margin-left: 5px;
+	margin-right: 5px;
+	padding: 8px; /* Отступ от текста до бордюра */
+	background-color: white; 
+	color: black; 
+	border: 2px solid #0000FF;
+	cursor: pointer;
+	outline: none;
+  	display: inline-block;
+	vertical-align: .6em;
+
+	}
+	/* Нажатая Кнопка */
+	.button2:hover {
+		background-color: #0000FF;
+		color: white;
+	}
+
+
+	/*Переключатель ---------------------------------------*/
+	.switch {
+  position: relative;
+  display: inline-block;
+  width: 70px;
+  height: 34px;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.switch input {display:none;}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+  font-weight: bold;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  top: 20;
+  height: 10px;
+  width: 10px;
+  left: 17px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #0000FF;
+  color: white;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #0000FF;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 15px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+  </style>
+ </head>
+ <body>
+	<div align="center">
+		<div class="container">
+			    
+			<div class="deviceBox">
+				<div class="nomnam">
+
+					<div class="nom"></div> 
+					<div class="nam" name='oper' id="oper">Новая копилка</div> <!-- Создание (name=new) или Редактирование копилки (name=edit) -->
+				</div>
+				<div class="bloki">
+					<div class="text1">Номер копилки</div> <!-- value = номер при редактировании (пользовательский) -->
+						<input value='{{ box.nnBox }}' id="nomer" name='nomer' type="text" maxlength="7" class="num" form='save' onclick="" onkeyup="newNomer('{{ box.idBox }}')" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+					<div class="text2" id='busyList' ></div>
+				</div>
+				<div class="bloki">
+					<div class="text1">Название копилки</div> <!-- value = название при редактировании -->
+						<input value='{{ box.nameBox }}' id="name" name='name' type="text" maxlength="30" class="txt" form='save' onclick="" onkeyup="newName('name')" onkeypress=''>
+						<div class="text2" id='nameList' ></div>
+					</div>
+				<div class="bloki">
+					<div class="text1">Дата создания</div> <!-- value = дата в формате гггг-мм-дд при редактировании -->
+						<input value='{{ box.dateCreateBox }}' id="dateCreate" name='dateCreate' type="date" min='' class="txt" form='save' onclick="" onkeyup="" onkeypress='' disabled>
+				</div>
+				<div class="bloki">
+					<div class="text1">Сумма в копилке</div> <!-- value = сумма при редактировании -->
+					<input value='{{ box.summaBox }}' id="summa" name='summa' type="text" maxlength="7" class="num" form='save' onclick="" onkeyup="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				</div>
+				<div class="bloki">
+					<div class="text1">Сумма план</div> <!-- value = сумма при редактировании -->
+					<input value='{{ box.summaPlanBox }}' id="targetsum" name='targetsum' type="text" maxlength="7" class="num" form='save' onclick="" onkeyup="" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+				</div>
+				<div class="bloki">
+					<div class="text1">Дата план</div> <!-- value = дата при редактировании -->
+						<input value='{{ box.datePlanBox }}' id="targetdate" name='targetdate' type="date" maxlength="7" class="txt" form='save' onclick="" onkeyup="" onkeypress=''>
+				</div>
+
+				{% if debts|length > 0 %} <!-- Если есть долги то выводим спойлер -->
+					<details id = 'dolgiAll'>
+						<summary>Долги</summary>
+						<!-- В долгах редактируется сумма без проверок/ Bмеет id = dolg + номер долга
+							Выбирается получатель. Имеет id = spis + номер долга
+							Действия сохранить и удалить совершаются по ссылкам и передают в функцию номер долга
+							Кнопки сохранить неактивны (изменен стиль) при загрузке. Обработчик их не выполняет при клике
+							При внесении изменений в сумму или получателя они активируются, после выполнения деактивируются
+						-->
+
+						{% for debt in debts %} <!-- Перебор долгов -->
+							<div id='dolgBox{{ debt.idDebt }}'>
+								{{ debt.date }}  &#8658; <b>{{ debt.transName }}</b><!-- Дата и Долг в / Займ из -->
+													<!-- id = spis + номер долга -->			<!-- номер долга -->
+								<select class="spis" id='spis{{ debt.idDebt }}' onchange="change('{{ debt.idDebt }}')">
+									{% for boxNum  in nameBox|keys %} <!-- перебор копилок -->   
+										<option value='{{ boxNum }}' {% if boxNum == debt.partnerNumber %} selected {% endif %}>{{ nameBox[boxNum] }} </option>  <!-- value - номера копилок, название -->
+									{% endfor %}	
+								</select> - 		<!-- сумма долга -->			<!-- id = dolg + номер долга -->											<!-- номер долга -->
+								<input value='{{ debt.summa }}' class="num1" id="dolg{{ debt.idDebt }}" name='{{ debt.idDebt }}' type="text" maxlength="7" onkeyup="change('{{ debt.idDebt }}')" onkeypress='return event.charCode >= 48 && event.charCode <= 57'>
+														<!-- id = save + номер долга -->			<!-- Передать номер долга -->
+								<div class="debtNo" id='save{{ debt.idDebt }}' title="Сохранить изменения" onclick="debtSave('{{ debt.idDebt }}')">&#128190;</div>
+								<div class="debt" title="Удалить долг" onclick="debtDel('{{ debt.idDebt }}')">&#10060;</div><!-- Передать номер долга -->
+							</div>
+						{% endfor %}
+
+					</details>
+				{% endif %}
+
+            </div>
+  
+			
+			<!-- Форма -->
+			<input name="box_edit" id = "box_edit" type="hidden" form="save" value='editORnew'/><!-- id копилки или пусто, если она новая -->
+			<input name="idBox" id = "idBox" type="hidden" form="save" value='{{ box.idBox }}'/><!-- id копилки или пусто, если она новая -->
+			<form type="submit" id="save" method="post" action="index.php" ></form>
+
+            <div class="keys1">
+				
+				<button class="button2" id = 'delBut' onclick="deleteBox({{ box.idBox }})">Удалить</button>
+				<button class="button2" onclick="clickClear();">Очистить</button>
+				<button class="button2" id = 'okBut' onclick="send();">Ок</button>
+				<button class="button2" onclick="document.location='index.php';">Отмена</button>
+				
+			</div>
+
+			</div>
+		</div>
+
+	</div>
+
+ </body>
+ 
+ <script type="text/javascript">
+
+	//------------------------------------------------------------------------------------------------------
+	//Глобальные переменные
+	//-------------------------------------------------------------------------------------------------------
+	
+		//В массив busyList считываем с сервера номера занятых копилок, после загрузки страницы записываем их 
+		//в раздел Номер копилки вместо слова Занятые
+		var busyList = [];
+
+		//В массив busyNameList считываем с сервера Названия копилок
+		var busyNameList = [];
+
+		//В эти переменные записываются данные при начальной загрузке
+		var numBox; //Номер копилки при загрузке 
+		var namBox; //Название копилки при загрузке 
+		var datBox; //Дата создания копилки при загрузке 
+		var sumBox; //Сумма в копилке при загрузке 
+		var sumPlan; //Сумма по плану которую накопить
+		var datPlan; //Дата по плану к которой накопить
+
+
+
+
+		/*Создаем функцию обработчик AJAX запроса
+		Функция получает массив пар nn-название занятых номеров названий копилок посредством JSON*/
+		var Handler = function(Request)
+		{		
+			var result = Request.responseText;
+
+			if (array == '-1'){
+				alert ('Ошибка подготовки формы');
+				document.location='index.php'; //Уходим на главную страницу
+			}
+
+			var array = JSON.parse(result); //Переводим из JSON в массив
+
+			//Перебираем массив и делим на 2 в один ключи в другой названия
+			for (var key in array) {
+				//Перебираем объекты записываем ключи и значения в разные массивы
+				busyList.push(key);
+				busyNameList.push(array[key]);
+            }
+
+			//При редактировании удаляем из массива элемент с номером редактируемой копилки
+			var obj = document.getElementById('idBox');
+			if (obj.value != '')  busyList.splice(busyList.indexOf(numBox), 1); //splice удаляет элемент
+			
+			//При редактировании удаляем из массива элемент с названием редактируемой копилки
+			var obj = document.getElementById('idBox');
+			if (obj.value != '')  busyNameList.splice(busyNameList.indexOf(namBox), 1); //splice удаляет элемент
+		}
+
+		/*Записывает номера в строку для вывода, а если среди них найдется номер совпадающий с номером в поле ввода номера
+		то он выделяется цвером и шрифтом
+		Далее строка выводится в список Занятые*/
+		function busy ()
+		{
+			var list = 'Занятые: ';
+			var searchNum = document.getElementById('nomer').value; //Номер в поле ввода номера
+
+			var one;
+			for (var index = 0; index < busyList.length; ++index) {
+
+				//Если очередной элемент равен введенному то при выводе окрашиваем его и увеличиваем шрифт
+				one = busyList[index];
+				if (one == searchNum) {
+					one = "<font color='#ff0000' size='+2'>" + one + "</font>";
+				}
+
+				list = list + one + ', ';
+
+			}
+
+			list = list.slice(0, -2); //Удаляем 2 последних символа Запятую и пробел
+			//Если цикл не выполнялся, то убираем целиком слово и впишем пустую строку
+			if (index==0) list = '';
+
+			
+			document.getElementById('busyList').innerHTML = list;
+		}
+
+
+		/*Выводит Слово Занято или Свободно рядом с полем Название копилки
+		Сверяет введенное в поле название с массивом названий копилок и выводит Занято если находит там его
+		При редактировании название редактируемой копилки не считается занятым*/
+		function busyName ()
+		{
+		
+			var list = 'Свободно';
+
+			if (busyNameList.indexOf (document.getElementById('name').value) != -1) list = 'Занято';//Поиск названия в массиве
+			if (document.getElementById('name').value == '') list = '';//Ничего не пишем, если поле пустое
+
+			document.getElementById('nameList').innerHTML = list;
+		}
+
+	//--------------------------------- ВЫПОЛНЯЕТСЯ ПОСЛЕ ЗАГРУЗКИ ---------------------------------------
+
+	//Выполняется после загрузки
+	window.onload = function() {
+
+		//Независимо, редактирование или новая копилка запоминаем состояния полей при загрузке
+		numBox = document.getElementById('nomer').value; //Номер копилки при загрузке 
+		namBox = document.getElementById('name').value; //Название копилки при загрузке 
+		//Дата создания. Для редактирования минимальная та - что задана ранее, для новой - текущая
+
+		var obj = document.getElementById('idBox');
+		if (obj.value != '') document.getElementById('oper').innerHTML = 'Редактирование копилки';
+
+		if (obj.value == '') 
+		{
+			//Заполняем поле даты
+			var d = new Date(); //Текущие дата
+			//var da = d.getFullYear() + '-' + zeroPadded(d.getMonth()+1);// + '-' + zeroPadded(d.getDate());
+			document.getElementById('dateCreate').value = d.getFullYear() + '-' + zeroPadded(d.getMonth()+1) + '-' + zeroPadded(d.getDate());
+		} 
+
+		datBox = document.getElementById('dateCreate').value; //Дата создания копилки при загрузке 
+		sumBox = document.getElementById('summa').value; //Сумма в копилке при загрузке 
+		sumPlan = document.getElementById('targetsum').value; //Сумма по плану которую накопить
+		datPlan = document.getElementById('targetdate').value; //Дата по плану к которой накопить
+		//Отправляем запрос на получение и подготовку массива занятых номеров и названий
+		//Синхронный вызов, чтобы массив успел определиться - false
+		SendRequest("GET","index.php","box_edit=get",Handler, false); 
+		
+		//Вывод на страницу списка занятых номеров
+		busy();
+		//Вывод сообщения свободно ли имя
+		busyName();
+
+		//Ограничиваем дату создания минимальным значением, оно указано в поле ввода даты
+		document.getElementById('dateCreate').min = datBox = document.getElementById('dateCreate').value; 
+
+	}
+
+	//Ведущий ноль
+	function zeroPadded(val) {
+	if (val >= 10)
+		return val;
+	else
+		return '0' + val;
+	};
+
+	//--------------------------------------------------
+	//Получение фокуса полем долгов, выделяем сумму в нем
+	function clickDolg (value)
+	{
+		arrDolgi[value].sel(); //Выделяем текст в поле ввода
+	}
+
+	//Проверка ввода цифр в поле номера копилки
+	function newNomer (value)
+	{
+		//Вывод на страницу списка занятых номеров
+		busy();
+	}
+
+	//Проверка ввода символов в поле названия копилки
+	function newName (value)
+	{
+		//Вывод на страницу Сообщения свободно ли введенное имя
+		busyName();
+	}
+
+	
+	//Нажатие кнопки OK: подготовка и отправка формы
+	function send()
+	{
+		//Если номер копилки занят то не отправляем, но с условием, это не проверяется для 
+		//редактирования, когда это номер редактируемой копилки, он ведь тоже занят, но пропускается
+
+			if (busyList.indexOf (document.getElementById('nomer').value) != -1) //Поиск номера в массиве
+			{
+				alert ("Этот номер копилки занят.");
+				return;
+			}
+
+			if (document.getElementById('nomer').value == '') //Номера не набран
+			{
+				alert ("Нужно указать номер копилки.");
+				return;
+			}
+			
+			if (document.getElementById('nameList').innerHTML != 'Свободно') //Если название занято или пустое не пропускаем
+			{
+				alert ("Проверьте название копилки.");
+				return;
+			}
+
+			if (document.getElementById('dateCreate').value == '') //Если дата создания не заполнена не пропускаем
+			{
+				alert ("Проверьте дату создания копилки.");
+				return;
+			}
+
+			if (document.getElementById('summa').value == '') //Если сумма не заполнена ставим туда 0
+			{
+				document.getElementById('summa').value = 0;
+			}
+		
+			document.getElementById('save').submit(); //Отправка формы
+	}
+
+
+	//Удаление копилки. Если есть долги удалить нельзя
+	function deleteBox ()
+	{
+		//Если у копилки долги значит это редактирование
+		//У новой их не будет, значит тега details с id = dolgiAll не будет, так же как у редактируемой без долгов
+		//Долги при редактировании не позволяют удалять копилку, запрещаем, если они есть
+		var element = document.getElementById('dolgiAll');
+		if(!element)
+		{
+			if (confirm('ВНИМАНИЕ! \nВы точно хотите удалить эту копилку?'))
+			document.location='index.php?box_delete={{ box.idBox }}';
+		} else {
+			alert ('Копилку с долгами удалить нельзя.')
+		}
+
+	}
+
+
+	//Кнопка Сброс
+	function clickClear ()
+	{
+		//Возвращяем значения полей запомненные при загрузке
+		document.getElementById('nomer').value = numBox; //Номер копилки при загрузке 
+		document.getElementById('name').value = namBox; //Название копилки при загрузке 
+		document.getElementById('dateCreate').value = datBox; //Дата создания копилки при загрузке 
+		document.getElementById('summa').value = sumBox; //Сумма в копилке при загрузке 
+		document.getElementById('targetsum').value = sumPlan; //Сумма по плану которую накопить
+		document.getElementById('targetdate').value = datPlan; //Дата по плану к которой накопить
+
+		//Вывод на страницу списка занятых номеров
+		busy();
+		
+		//Вывод на страницу Сообщения свободно ли введенное имя
+		busyName();
+
+	}
+
+	//-------------------------------- По кнопкам совершаются действия над долгами через AJAX---------------
+	//Кнопки Сохранить у долгов
+	//Передаем параметры debtEdit = номер долга, summa - новая сумма долга, to - в какую копилку долг
+	function debtSave (value)
+	{
+		if (document.getElementById('save'+value).className == 'debtNo') return; //Если кнопка не активна - выходим
+		//Собираем парамерты со страницы и готовим строку для GET запроса
+		
+		//Если после редактирования сумма долга стала равна 0, то удаляем долг
+		if (document.getElementById('dolg'+value).value == 0) {
+			//Уточняем, удалить ли долг
+			if (!confirm('ВНИМАНИЕ! \nДолг будет удален. \nВы точно хотите удалить этот долг?')) return;
+
+			//Отправка зпроса на удаление долга
+			var param = 'debtDel=' + value; //Параметр для GET запроса
+			SendRequest("GET","index.php", param, Handler3); //Отправляем AJAX запрос, передаем долг на удаление
+			return;
+		};
+
+		var param = 'debtEdit=' + value + '&summa=' + document.getElementById('dolg'+value).value + 
+		'&to=' + document.getElementById('spis'+value).value + '&this=' + document.getElementById('idBox').value;
+		SendRequest("GET","index.php", param, Handler2); //Отправляем AJAX запрос, передаем отредактированный долг
+		
+	}
+
+	/*Создаем функцию обработчик AJAX запроса
+	Функция получает результат изменения долга */
+	var Handler2 = function(Request)
+	{
+		var result = Request.responseText; //Возвращяем результат выполнения
+		//В переменной result приходит ответ номер обработанного долга
+		// или -1 который сообщяет о результате выполнения запроса
+		//Если запрос выполнен блокируем кнопку сохранения
+		if (result != -1) 
+		{
+			document.getElementById('save'+result).className = 'debtNo'; //Новый класс кнопке
+			
+		} else alert ("Редактирование не выполнено.");
+
+	}
+
+	//Кнопки Удалить у долгов
+	function debtDel(value)
+	{
+		//Уточняем, удалить ли долг
+		if (!confirm('ВНИМАНИЕ! \nВы точно хотите удалить этот долг?')) return;
+
+		//Отправка зпроса на удаление долга
+		var param = 'debtDel=' + value; //Параметр для GET запроса
+		SendRequest("GET","index.php", param, Handler3); //Отправляем AJAX запрос, передаем долг на удаление
+
+	}
+
+	/*Создаем функцию обработчик AJAX запроса
+	Функция получает результат удаления долга */
+	var Handler3 = function(Request)
+	{
+		var result = Request.responseText; //Возвращяем результат выполнения
+		//В переменной result приходит ответ номер обработанного долга
+		// или -1 который сообщяет о результате выполнения запроса
+		//Если запрос выполнен удаляем со страницы долг
+		if (result != -1) 
+		{
+			var element = document.getElementById('dolgBox'+result); //Удаляем div блок с долгом
+			element.remove();
+
+			element = document.getElementById('dolgiAll');
+			var num1Kol = element.getElementsByClassName('num1'); //Количество элементов с классом num1
+			//внутри тега details. Если их нет то удаляем и сам details
+			if (num1Kol.length == 0) 
+			{
+				element.remove(); 
+			}
+
+
+		} else alert ("Удаление не выполнено.");
+
+	}
+
+	//Активация кнопок сохранить при изменении из параметров
+	function change (value)
+	{
+		document.getElementById('save'+value).className = 'debt'; //Новый класс кнопке 
+	}
+
+// ------------------------------ AJAX -------------------------------------------------
+//Функция для упрощения обмена данными с сервером. https://habr.com/ru/post/14246/
+//--------------------------------------------------------------------------------------
+//Пример вызова
+/*
+function ReadFile(filename, container)
+{
+    //Создаем функцию обработчик
+    var Handler = function(Request)
+    {
+        document.getElementById(container).innerHTML = Request.responseText;
+    }
+    
+    //Отправляем запрос
+    SendRequest("GET",filename,"",Handler);
+    
+}
+*/
+
+//Создание объекта XMLHttpRequest в разных браузерах
+function CreateRequest()
+{
+    var Request = false;
+
+    if (window.XMLHttpRequest)
+    {
+        //Gecko-совместимые браузеры, Safari, Konqueror
+		Request = new XMLHttpRequest();
+    }
+    else if (window.ActiveXObject)
+    {
+        //Internet explorer
+        try
+        {
+             Request = new ActiveXObject("Microsoft.XMLHTTP");
+        }    
+        catch (CatchException)
+        {
+             Request = new ActiveXObject("Msxml2.XMLHTTP");
+        }
+    }
+ 
+    if (!Request)
+    {
+        alert("Невозможно создать XMLHttpRequest");
+    }
+    
+    return Request;
+} 
+
+
+/*Для создания запроса к серверу мы создадим небольшую функцию,
+которая будет по функциональности объединять в себе функции для GET и POST запросов.*/
+
+/*
+Функция посылки запроса к файлу на сервере
+r_method  - тип запроса: GET или POST
+r_path    - путь к файлу
+r_args    - аргументы вида a=1&b=2&c=3...
+r_handler - функция-обработчик ответа от сервера
+r_syn     - true - асинхронный запрос AJAX, false - синхронный
+*/
+function SendRequest(r_method, r_path, r_args, r_handler, r_syn)
+{
+	//Если переменная r_syn не определена делаем ее по умолчанию true
+	if (r_syn === undefined) r_syn = true;
+
+    //Создаём запрос
+    var Request = CreateRequest();
+    
+    //Проверяем существование запроса еще раз
+    if (!Request)
+    {
+        return;
+    }
+    
+		//Назначаем пользовательский обработчик
+		Request.onreadystatechange = function()
+		{
+			//Если обмен данными завершен
+			if (Request.readyState == 4)
+			{
+				if (Request.status == 200)
+				{
+					//Передаем управление обработчику пользователя
+					r_handler(Request);
+				}
+				else
+				{
+					//Оповещаем пользователя о произошедшей ошибке
+					alert ('Ошибка соединения ' + Request.status);
+				}
+			}
+			else
+			{
+				//Оповещаем пользователя о загрузке
+			}
+		
+		}
+    
+    //Проверяем, если требуется сделать GET-запрос
+    if (r_method.toLowerCase() == "get" && r_args.length > 0)
+    r_path += "?" + r_args;
+	
+    //Инициализируем соединение
+    Request.open(r_method, r_path, r_syn);
+    if (r_method.toLowerCase() == "post")
+    {
+        //Если это POST-запрос
+        
+        //Устанавливаем заголовок
+        Request.setRequestHeader("Content-Type","application/x-www-form-urlencoded; charset=utf-8");
+        //Посылаем запрос
+        Request.send(r_args);
+    }
+    else
+    {
+		//Если это GET-запрос
+		
+        //Посылаем нуль-запрос
+        Request.send(null);
+    }
+} 
+
+
+
+ </script>
+ 
+</html>

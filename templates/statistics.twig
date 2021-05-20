@@ -1,0 +1,285 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=0.6">
+  <title>Статистика</title>
+  <style>
+      
+    body {
+        font-family: Trebuchet MS, "Helvetica CY", "Nimbus Sans L", sans-serif;
+    }
+
+    /* Контейнер Для всего */
+    .container {
+    width: 575px;
+    max-width: 575px;
+    background:#000000;
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    border-radius: 0 10px;
+    }
+  
+    /* Основной белый контейнер для списков */
+    .deviceBox {
+    width: 95%;
+    background: #FFFFFF;
+    margin: auto; /* Выравниваем по центру */
+    border-radius: 0 10px;
+    margin-top: 5px; /* Отступ сверху */
+    padding: 12px 9px 9px;
+    text-align: left;
+    }
+    
+        /* Номер копилки*/
+    .nom {
+    display:inline-block;
+    width: 10%;
+    font-size:20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    }
+
+    /* Название копилки*/
+    .nam {
+    display:inline-block;
+    width: 450px;
+    font-size:20px;
+    font-weight: bold;
+    color: #FFFFFF;
+    text-align:right;
+    }
+
+    /* Название Копилки */
+    .nomnam {
+    background: #0000FF;
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    margin-bottom: 0px;
+    border-radius: 0 10px;
+    color: #FFFFFF;
+    font-size:20px;
+    }
+
+    /* Сумма*/
+    .sum {
+    display:inline-block;
+    width: 170px;
+    font-size:42px;
+    font-weight: bold;
+    color: #0000FF;
+    text-align: right;
+    vertical-align: .28em;
+    }
+    
+    /* Слово История */
+    .stat {
+    display:inline-block;
+    width: 240px;
+    font-size:42px;
+    font-weight: bold;
+    color: #535353;
+    text-align: right;
+    vertical-align: .3em;
+    padding: 10px 20px; /* отступ от текста */
+    }
+
+    /* Символ для Редактирования и Статистики */
+    .link {
+    font-size: 24px;
+    margin: 5px 5px; /* отступ от текста */
+    vertical-align: .8em;
+    text-decoration: none; /* Убирает подчеркивание для ссылок */
+    }
+
+    /* Подзаголовки. Даты. */
+    .nomnam2 {
+    background: #e4e4ff;
+    padding: 10px; /* Поля вокруг текста */
+    margin: auto; /* Выравниваем по центру */
+    margin-bottom: 0px;
+    border-radius: 0 10px;
+    font-size:20px;
+    text-align:left;
+    font-weight: bold;
+    }
+
+    /* Текст внутри блоков. */
+    .text {
+    padding: 10px; /* Поля вокруг текста */
+    margin: 15px 15px; /* отступ от текста */
+    font-size:18px;
+    text-align:left;
+    line-height: 1.5;
+    }
+
+     /* Сумма в строке */
+    .money {
+    color: #ff0000;
+    }
+   
+    /* Контейнер Нижняя панель с кнопками*/
+    .keys1 {
+    width: 95%;
+    height: 40px;
+    background: #FFFFFF;
+    border-radius: 0 10px;
+    margin-top: 5px; /* Отступ сверху */
+    margin-bottom: 10px;
+    padding: 8px 9px 9px;
+    margin-bottom: 6px;
+    }
+
+    /* Кнопка */
+    .button2 {
+    font-size:18px;
+    font-weight: bold;
+    border-radius: 0 10px;
+    width: 120px;
+    margin-left: 5px;
+    margin-right: 5px;
+    padding: 8px; /* Отступ от текста до бордюра */
+    background-color: white; 
+    color: black; 
+    border: 2px solid #0000FF;
+    cursor: pointer;
+    outline: none;
+      display: inline-block;
+    vertical-align: .6em;
+    }
+    /* Нажатая Кнопка */
+    .button2:hover {
+        background-color: #0000FF;
+        color: white;
+    }
+
+  </style>
+ </head>
+ <body>
+    <div align="center">
+        <div class="container">
+                
+            <div class="deviceBox">
+
+                <div class="nomnam">
+                    <div class="nom">{{ data.nnBox }}</div> <!-- Номер Копилки -->
+                    <div class="nam">{{ data.nameBox }}</div> 
+                </div>
+
+                <div class="sum" id="sum">{{ data.summaBox }}</div> <!-- Сумма в Копилке. Меняется при отмене операций-->
+                <div class="stat">Статистика</div>
+
+                <!-- По этим ссылкам методом GET передается номер копилки -->
+                <a class="link" title="Редактирование" href="index.php?box_edit={{ data.idBox }}">&#9998;</a>
+                <a class="link" title="История" href="index.php?box_his={{ data.idBox }}">&#9200;</a>
+                Создана <b>{{ data.dateCreateBox }}</b>
+
+            </div>
+
+            {% set mnths = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'] %}
+
+             {% for oneMonth in data.month %}
+                {% set numMonth = oneMonth.month|slice(3, 2) %}
+                {% set newDate = numMonth ~ '.' ~ oneMonth.month|slice(6, 4) %}
+                <div class="deviceBox">
+                    <div class="nomnam2">{{ newDate }} ({{ mnths[numMonth-1] }})</div>
+                    <div class="text">
+                        Приход <span class="money">{{ oneMonth.income }}</span> 
+                        / Расход <span class="money">{{ oneMonth.spending }}</span><br>
+                        Среднее за день <span class="money">{{ oneMonth.avg }}</span> / Максимально 
+                        <b>{{ oneMonth.maxDate }}</b> - <span class="money">{{ oneMonth.max }}</span><br>
+                        Долги: Взято <span class="money">{{ oneMonth.debtsPlus }}</span> 
+                        / Отдано <span class="money">{{ oneMonth.debtsMinus }}</span><br>
+                        Сумма в копилке на конец месяца <span class="money">{{ oneMonth.summa }}</span><br>
+                    </div>
+                </div>
+            {% endfor %}
+
+            <div class="deviceBox">
+
+                {% set numMonth = data.currentMonth.month|slice(3, 2) %}
+                {% set newDate = numMonth ~ '.' ~ data.currentMonth.month|slice(6, 4) %}
+
+                <div class="nomnam2">{{ newDate }} ({{ mnths[numMonth-1] }})</div>
+                <div class="text">
+                    {% for oneDay in data.currentList %}
+                        <b>{{ oneDay.date }}</b> &#8658; Приход <span class="money">{{ oneDay.income }}</span> 
+                        / Расход <span class="money">{{ oneDay.spending }}</span><br> 
+                    {% endfor %}
+                </div>
+                <div class="text">
+                    Приход <span class="money">{{ data.currentMonth.income }}</span> 
+                    / Расход <span class="money">{{ data.currentMonth.spending }}</span><br>
+                    Среднее за день <span class="money">{{ data.currentMonth.avg }}</span> / Максимально 
+                    <b>{{ data.currentMonth.maxDate }}</b> - <span class="money">{{ data.currentMonth.max }}</span><br>
+                    Долги: Взято <span class="money">{{ data.currentMonth.debtsPlus }}</span> 
+                    / Отдано <span class="money">{{ data.currentMonth.debtsMinus }}</span><br>
+                    Сумма в копилке <span class="money">{{ data.currentMonth.summa }}</span>
+                </div>
+            </div>
+
+            <div class="deviceBox">
+                <div class="text">
+                    За все время Приход <span class="money">{{ data.incomeTotal }}</span> / 
+                    Расход <span class="money">{{ data.spendingTotal }}</span><br>
+                    Среднее за день <span class="money">{{ data.avgTotal }}</span> / Максимально 
+                    <b>{{ data.maxDateTotal }}</b> - <span class="money">{{ data.maxTotal }}</span>
+                </div>
+            </div>
+           
+            <div class="deviceBox">
+                <div class="nomnam2">Скорость накопления</div>
+                <div class="text">
+                    День - <span class="money">{{ data.speedDay }}</span><br>
+                    Неделя - <span class="money">{{ data.speedWeek }}</span><br>
+                    Месяц - <span class="money">{{ data.speedMonth }}</span><br>
+                    Год - <span class="money">{{ data.speedYear }}</span>
+                </div>
+            </div>
+
+            {% if data.summaCurSpeed != '-1' or data.dataCurSpeed != '0000-00-00' %}
+                <div class="deviceBox">
+                    <div class="nomnam2">Цели</div>
+
+                        {% if data.dataCurSpeed != '0000-00-00' %} 
+                            <div class="text">
+                                Целевая сумма <span class="money">{{ data.summaPlanBox }}</span><br>
+                                С текущей скоростью будет накоплена  
+                                <b>{{ data.dataCurSpeed }}</b>
+                            </div>
+                        {% endif %}
+
+                        {% if data.summaCurSpeed != '-1' %}
+                            <div class="text">
+                                К целевой дате <b>{{ data.datePlanBox }}</b><br>
+                                С текущей скоростью будет накоплено <span class="money">{{ data.summaCurSpeed }}</span>
+                            </div>
+                        {% endif %} 
+
+                        {% if data.requiredSpeed != '-1' %}
+                            <div class="text">
+                                Для накопления <span class="money">{{ data.summaPlanBox }}</span> к <b>{{ data.datePlanBox }}</b><br> 
+                                необходимо откладывать <span class="money">{{ data.requiredSpeed }}</span> в день<br>
+                                Вы откладываете <span class="money">{{ data.avgTotal }}</span>
+                            </div>
+                        {% endif %}
+
+                    </div>
+            {% endif %}
+
+            <div class="keys1">
+                <button class="button2" onclick="document.location='index.php'">Ок</button>
+            </div>
+        </div>
+        </div>
+
+    </div>
+
+ </body>
+ 
+ <script type="text/javascript">
+
+
+ </script>
+ 
+</html>
