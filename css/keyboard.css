@@ -1,0 +1,134 @@
+body {
+    font-family: Trebuchet MS, 'Helvetica CY', 'Nimbus Sans L', sans-serif;
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+.screen {
+    position:absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+}    
+
+.icon {
+    font-size: 24px;
+    display:inline-block;
+    position:relative;
+    margin: 6px 6px 6px 6px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .icon:hover {
+        background-color: blue;
+    }
+}
+
+.sim {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+    margin-top	: 15px;
+}
+
+.sim1 {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: right;
+	margin-top	: 15px; 
+}
+
+.sim2 {
+    font-size: 60px;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+    text-align: center;
+	margin-top	: 60px; 
+}
+
+.disp {
+    width: 414px;
+    height: 100px;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+}
+
+.digit {
+    display:inline-block;
+    margin-top: 2px;
+    vertical-align: top;
+}
+
+.key {
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}    
+@media (hover: hover) and (pointer: fine) {
+    .key:hover {
+        background-color: blue;
+    }
+}
+
+
+.null {
+    width: 310px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .null:hover {
+        background-color: blue;
+    }
+}
+
+.one {
+    width: 100px;
+    height: 100px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .one:hover {
+        background-color: blue;
+    }
+}
+
+.ok {
+    width: 100px;
+    height: 204px;
+    display:inline-block;
+    position:relative;
+    margin-bottom: 2px;
+    border: 1px solid rgb(0, 0, 0);
+    border-radius: 0 10px;
+    cursor: pointer;
+}
+@media (hover: hover) and (pointer: fine) {
+    .ok:hover {
+        background-color: blue;	
+    }
+}

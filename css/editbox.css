@@ -1,0 +1,252 @@
+body {
+    font-family: Trebuchet MS, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
+/* Контейнер Для всего */
+.container {
+width: 575px;
+max-width: 575px;
+background:#000000;
+padding: 10px; /* Поля вокруг текста */
+margin: auto; /* Выравниваем по центру */
+border-radius: 0 10px;
+}
+
+    
+/* Основной белый контейнер для списков */
+.deviceBox {
+width: 95%;
+background: #FFFFFF;
+margin: auto; /* Выравниваем по центру */
+border-radius: 0 10px;
+margin-top: 5px; /* Отступ сверху */
+padding: 12px 9px 9px;
+text-align: left;
+}
+
+/* Название Списка */
+.nomnam {
+background: #0000FF;
+padding: 10px; /* Поля вокруг текста */
+margin: auto; /* Выравниваем по центру */
+margin-bottom: 0px;
+border-radius: 0 10px;
+color: #FFFFFF;
+font-size:20px;
+}
+
+/* Номер копилки пустое*/
+.nom {
+display:inline-block;
+width: 10%;
+font-size:20px;
+font-weight: bold;
+color: #FFFFFF;
+}
+
+/* Действие */
+.nam {
+display:inline-block;
+width: 450px;
+font-size:20px;
+font-weight: bold;
+color: #FFFFFF;
+text-align:right;
+}
+
+/* Поле ввода суммы */
+.num {
+font-size: 24px;
+color: red;
+width: 95px;
+text-align: right;
+display: inline-block;
+margin: 10px 10px; /* отступ от текста */
+}
+
+/* Поле ввода текста */
+.txt {
+font-size: 24px;
+color: red;
+width: 200px;
+text-align: right;
+display: inline-block;
+margin: 10px 10px; /* отступ от текста */
+}
+
+/* Подпись полей */
+.text1 {
+width: 100px;
+font-size: 18px;
+margin: 5px 5px; /* отступ от текста */
+vertical-align:-0.4em;
+display: inline-block;
+}
+
+/* Пояснительне тексты */
+.text2 {
+font-size: 16px;
+margin: 5px 5px; /* отступ от текста */
+vertical-align:top;
+display: inline-block;
+}
+
+/* Спойлер Долги */
+summary {
+padding: 3px; /* Поля вокруг текста */
+margin: auto; /* Выравниваем по центру */
+margin-bottom: 2px;
+border-radius: 0 10px;
+text-align:right;
+font-size:16px;
+cursor: pointer;
+outline: none;
+}
+
+/* Значек для перехода в JS для погашения или удаления долга */
+.debt {
+font-size: 20px;
+margin-left: 10px;
+display: inline-block;
+cursor: pointer;
+}
+
+/* Значек для перехода в JS для погашения долга, неактивный*/
+.debtNo {
+font-size: 20px;
+margin-left: 10px;
+display: inline-block;
+filter: grayscale(100%);
+}
+
+/* Поле ввода суммы */
+.num1 {
+font-size: 14px;
+color: red;
+width: 45px;
+text-align: right;
+display: inline-block;
+outline: none;
+margin-right: 3px;
+margin-left: 3px;
+}
+
+
+/* Выпадающий список */
+.spis {
+font-size: 14px;
+color: red;
+width: 160px;
+height: 22px;
+text-align: right;
+display: inline-block;
+outline: none;
+margin-right: 3px;
+margin-left: 3px;
+}
+
+textarea {
+    width: 99%;
+    resize: none;
+    font-size: 16px;
+}
+
+/* Контейнер Нижняя панель с кнопками*/
+.keys1 {
+width: 95%;
+height: 40px;
+background: #FFFFFF;
+border-radius: 0 10px;
+margin-top: 5px; /* Отступ сверху */
+margin-bottom: 10px;
+padding: 8px 9px 9px;
+margin-bottom: 6px;
+}
+
+
+/* Кнопка */
+.button2 {
+font-size:18px;
+font-weight: bold;
+border-radius: 0 10px;
+width: 120px;
+margin-left: 5px;
+margin-right: 5px;
+padding: 8px; /* Отступ от текста до бордюра */
+background-color: white; 
+color: black; 
+border: 2px solid #0000FF;
+cursor: pointer;
+outline: none;
+  display: inline-block;
+vertical-align: .6em;
+
+}
+/* Нажатая Кнопка */
+.button2:hover {
+    background-color: #0000FF;
+    color: white;
+}
+
+
+/*Переключатель ---------------------------------------*/
+.switch {
+position: relative;
+display: inline-block;
+width: 70px;
+height: 34px;
+margin-right: 10px;
+margin-left: 30px;
+}
+
+.switch input {display:none;}
+
+.slider {
+position: absolute;
+cursor: pointer;
+top: 0;
+left: 0;
+right: 0;
+bottom: 0;
+background-color: #ccc;
+-webkit-transition: .4s;
+transition: .4s;
+font-weight: bold;
+}
+
+.slider:before {
+position: absolute;
+content: "";
+top: 20;
+height: 10px;
+width: 10px;
+left: 17px;
+bottom: 4px;
+background-color: white;
+-webkit-transition: .4s;
+transition: .4s;
+}
+
+input:checked + .slider {
+background-color: #0000FF;
+color: white;
+}
+
+input:focus + .slider {
+box-shadow: 0 0 1px #0000FF;
+}
+
+input:checked + .slider:before {
+-webkit-transform: translateX(26px);
+-ms-transform: translateX(26px);
+transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+border-radius: 15px;
+}
+
+.slider.round:before {
+border-radius: 50%;
+}
